@@ -26,8 +26,8 @@ public class Empresa implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "nome_fantiasia", nullable = false, length = 80)
-	private String nomeFantsia;
+	@Column(name = "nome_fantasia", nullable = false, length = 80)
+	private String nomeFantasia;
 	
 	@Column(name = "razao_social", nullable = false, length = 120)
 	private String razaoSocial;
@@ -46,6 +46,14 @@ public class Empresa implements Serializable {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "tipo_empresa", length = 30)
 	private TipoEmpresa tipoEmpresa;
+	
+	public TipoEmpresa getTipoEmpresa() {
+		return tipoEmpresa;
+	}
+	
+	public void setTipoEmpresa(TipoEmpresa tipoEmpresa) {
+		this.tipoEmpresa = tipoEmpresa;
+	}
 
 	public Long getId() {
 		return id;
@@ -55,12 +63,12 @@ public class Empresa implements Serializable {
 		this.id = id;
 	}
 
-	public String getNomeFantsia() {
-		return nomeFantsia;
+	public String getNomeFantasia() {
+		return nomeFantasia;
 	}
 
-	public void setNomeFantsia(String nomeFantsia) {
-		this.nomeFantsia = nomeFantsia;
+	public void setNomeFantasia(String nomeFantasia) {
+		this.nomeFantasia = nomeFantasia;
 	}
 
 	public String getRazaoSocial() {
