@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<meta charset="UTF-8" />
+	<title>Gestão Empresas</title>
+	<h:outputStylesheet library="jopaulo" name="estilo.css"/>
+</h:head>
+
+<h:body>
+	<header>
+		<h:outputLabel value="Jopaulo System"/>
+<!-- 		<h:graphicImage library="jopaulo" name="jopaulo.png"/> -->
+	</header>
+	
+	<div id="conteudo">
+		<h:form>
+			<h:panelGrid columns="2">
+				<h:outputLabel value="Número: "/>
+				<h:outputText value="#{gestaoEmpresaBean.numero}"/>
+				
+				<h:commandButton value="Salvar"/>
+			</h:panelGrid>
+		</h:form>
+	</div>	
+	
+	<footer>
+		© 2020 João Paulo da Mata Mendes. Todos os direitos reservados.
+	</footer>
+</h:body>
+</html>
