@@ -1,6 +1,7 @@
 package com.jopaulo.erp.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -46,6 +47,9 @@ public class Empresa implements Serializable {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "tipo_empresa", length = 30)
 	private TipoEmpresa tipoEmpresa;
+	
+	@Column(precision = 10, scale = 2)
+	private BigDecimal faturamento;
 	
 	public TipoEmpresa getTipoEmpresa() {
 		return tipoEmpresa;
@@ -101,6 +105,14 @@ public class Empresa implements Serializable {
 
 	public void setRamoAtividade(RamoAtividade ramoAtividade) {
 		this.ramoAtividade = ramoAtividade;
+	}
+	
+	public BigDecimal getFaturamento() {
+		return faturamento;
+	}
+
+	public void setFaturamento(BigDecimal faturamento) {
+		this.faturamento = faturamento;
 	}
 
 	@Override

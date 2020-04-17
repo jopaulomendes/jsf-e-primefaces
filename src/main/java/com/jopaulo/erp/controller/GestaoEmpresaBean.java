@@ -19,7 +19,9 @@ public class GestaoEmpresaBean implements Serializable {
 	public void salvar() {
 		System.out.println("Razão social: " + empresa.getRazaoSocial()
 				+ " - Nome Fantasia: " + empresa.getNomeFantasia()
-				+ " - Tipo: " + empresa.getTipoEmpresa());
+				+ " - Tipo: " + empresa.getTipoEmpresa()
+				+ " - Data fundação: " + empresa.getDataFundacao()
+				+ " - Faturamento: " + empresa.getFaturamento());
 	}
 	
 	public String ajuda() {
