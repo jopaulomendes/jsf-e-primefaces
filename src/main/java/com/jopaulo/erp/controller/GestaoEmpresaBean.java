@@ -1,12 +1,14 @@
 package com.jopaulo.erp.controller;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.jopaulo.erp.model.Empresa;
-import com.jopaulo.erp.model.TipoEmpresa;
+import com.jopaulo.erp.repository.Empresas;
 
 @Named
 @ViewScoped
@@ -14,25 +16,16 @@ public class GestaoEmpresaBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	private Empresa empresa = new Empresa();
+	@Inject
+	private Empresas empresas;
 	
-	public void salvar() {
-		System.out.println("Razão social: " + empresa.getRazaoSocial()
-				+ " - Nome Fantasia: " + empresa.getNomeFantasia()
-				+ " - Tipo: " + empresa.getTipoEmpresa()
-				+ " - Data fundação: " + empresa.getDataFundacao()
-				+ " - Faturamento: " + empresa.getFaturamento());
+	private List<Empresa> listaEmpresas;
+	
+	public void todasEmpresas() {
+		listaEmpresas = empresas.todas();
 	}
-	
-	public String ajuda() {
-		return "AjudaGestaoEmpresa?faces-redirect=true";
-	}
-	
-	public Empresa getEmpresa() {
-		return empresa;
-	}
-	
-	public TipoEmpresa[] getTipoEmpresas() {
-		return TipoEmpresa.values();
+
+	public List<Empresa> getListaEmpresas() {
+		return listaEmpresas;
 	}
 }
