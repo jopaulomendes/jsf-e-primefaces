@@ -5,7 +5,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	template="WEB-INF/template/Layout.xhtml">
-	
+
 	<ui:define name="titulo">
 		Cadastro de Empresas
 	</ui:define>
@@ -16,6 +16,36 @@
 		</f:metadata>
 
 		<h:form>
+			<p:toolbar>
+				<f:facet name="left">
+					<p:inputText placeholder="Pesquisar..."	size="30" />
+
+					<p:commandButton value="Pesquisar" icon="fa fa fa-search" />
+
+					<span class="ui-separator">
+						<span class="ui-icon ui-icon-grip-dotted-vertical" />
+					</span>
+
+					<p:commandButton value="Nova" icon="fa fa-plus" />
+
+					<span class="ui-separator">
+						 <span class="ui-icon ui-icon-grip-dotted-vertical" />
+					</span>
+
+					<p:commandButton title="Editar" icon="fa fa-edit" />
+
+					<p:commandButton title="Excluir" icon="fa fa-trash" />
+
+					<span class="ui-separator"> 
+						<span class="ui-icon ui-icon-grip-dotted-vertical" />
+					</span>
+
+					<p:commandButton title="Exportar para o Excel" icon="fa fa-file-excel-o" />
+				</f:facet>
+			</p:toolbar>
+
+			<p:spacer height="20px" />
+
 			<p:dataTable var="empresa" value="#{gestaoEmpresaBean.listaEmpresas}"
 				emptyMessage="Nenhuma informação encontrada" paginator="true"
 				rows="10" paginatorPosition="bottom">

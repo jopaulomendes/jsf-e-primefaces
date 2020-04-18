@@ -14,30 +14,28 @@
 	src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 </head>
 
-<body>
+<h:body>
 	<h:head>
 		<meta charset="UTF-8" />
 		<title>Gestão Empresas</title>
 		<h:outputStylesheet library="jopaulo" name="estilo.css" />
 	</h:head>
 
-	<h:body>
-		<header>
-			<h:outputLabel value="Jopaulo System" />
-			<!-- 		<h:graphicImage library="jopaulo" name="jopaulo.png"/> -->
-		</header>
+	<header>
+		<h:outputLabel value="Jopaulo System" />
+		<!-- 		<h:graphicImage library="jopaulo" name="jopaulo.png"/> -->
+	</header>
 
-		<h2>
-			<ui:insert name="titulo"/>
-		</h2>
+	<h2>
+		<ui:insert name="titulo" />
+	</h2>
 
-		<div id="conteudo">
-			<ui:insert name="conteudo"/>
-		</div>
+	<div id="conteudo">
+		<ui:insert name="conteudo" />
+	</div>
 
-		<footer> 
-			© 2020 João Paulo da Mata Mendes. Todos os direitos	reservados. 
-		</footer>
-	</h:body>
-</body>
+	<footer> 
+		© 2020 João Paulo da Mata Mendes. Todos os direitos reservados.
+	</footer>
+</h:body>
 </html>
