@@ -32,7 +32,8 @@
 		<h2>Cadastro de Empresas</h2>
 
 		<div id="conteudo">
-			<p:dataTable var="empresa" value="#{gestaoEmpresaBean.listaEmpresas}" emptyMessage="Nenhuma informação encontrada">
+			<p:dataTable var="empresa" value="#{gestaoEmpresaBean.listaEmpresas}" emptyMessage="Nenhuma informação encontrada"
+				paginator="true" rows="10" paginatorPosition="bottom">
 				<p:column headerText="Código">
 					<h:outputText value="#{empresa.id}" />
 				</p:column>
