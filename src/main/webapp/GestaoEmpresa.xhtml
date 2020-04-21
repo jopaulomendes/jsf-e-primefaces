@@ -16,17 +16,22 @@
 		</f:metadata>
 
 		<h:form>
+			<p:messages id="messages" showDetail="true" closable="true">
+				<p:autoUpdate />
+			</p:messages>
+
 			<p:toolbar>
 				<f:facet name="left">
-					<p:inputText placeholder="Pesquisar..."	size="30" />
+					<p:inputText placeholder="Pesquisar razao social..."	size="30" value="#{gestaoEmpresaBean.termoPesquisar}"/>
 
-					<p:commandButton value="Pesquisar" icon="fa fa fa-search" />
+					<p:commandButton value="Pesquisar" icon="fa fa-search" title="Pesquisar empresa"
+						actionListener="#{gestaoEmpresaBean.pesquisar}" update="empresaDataTable"/>
 
 					<span class="ui-separator">
 						<span class="ui-icon ui-icon-grip-dotted-vertical" />
 					</span>
 
-					<p:commandButton value="Nova" icon="fa fa-plus" onclick="PF('empresaDialogWidgetVar').show()"/>
+					<p:commandButton value="Nova" icon="fa fa-plus" title="Nova empresa" onclick="PF('empresaDialogWidgetVar').show()"/>
 
 					<span class="ui-separator">
 						 <span class="ui-icon ui-icon-grip-dotted-vertical" />
@@ -46,7 +51,7 @@
 
 			<p:spacer height="20px" />
 
-			<p:dataTable var="empresa" value="#{gestaoEmpresaBean.listaEmpresas}"
+			<p:dataTable id="empresaDataTable" var="empresa" value="#{gestaoEmpresaBean.listaEmpresas}"
 				emptyMessage="Nenhuma informação encontrada" paginator="true"
 				rows="10" paginatorPosition="bottom">
 
@@ -71,7 +76,7 @@
 				</p:column>
 			</p:dataTable>
 			
-			<p:dialog header="Nova empresa" widgetVar="empresaDialogWidgetVar" modal="true" resizable="false" closeOnEscape="true">
+			<p:dialog header="Nova empresa" widgetVar="empresaDialogWidgetVar" modal="true" resizable="false" closeOnEscape="true" draggable="false">
 				<p:commandButton value="Salvar" icon="pi pi-bookmark" />
 			</p:dialog>
 		</h:form>

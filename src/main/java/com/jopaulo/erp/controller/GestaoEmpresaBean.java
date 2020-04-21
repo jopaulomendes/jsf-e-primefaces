@@ -9,6 +9,7 @@ import javax.inject.Named;
 
 import com.jopaulo.erp.model.Empresa;
 import com.jopaulo.erp.repository.Empresas;
+import com.jopaulo.erp.util.FacesMessages;
 
 @Named
 @ViewScoped
@@ -19,7 +20,20 @@ public class GestaoEmpresaBean implements Serializable {
 	@Inject
 	private Empresas empresas;
 	
+	@Inject
+	private FacesMessages messages;
+	
 	private List<Empresa> listaEmpresas;
+	
+	private String termoPesquisar;
+	
+	public void pesquisar() {
+		listaEmpresas = empresas.pesquisar(termoPesquisar);
+		
+		if (listaEmpresas.isEmpty()) {
+			messages.info("Consulta não retornou rigistros");
+		}
+	}
 	
 	public void todasEmpresas() {
 		listaEmpresas = empresas.todas();
@@ -27,5 +41,13 @@ public class GestaoEmpresaBean implements Serializable {
 
 	public List<Empresa> getListaEmpresas() {
 		return listaEmpresas;
+	}
+
+	public String getTermoPesquisar() {
+		return termoPesquisar;
+	}
+
+	public void setTermoPesquisar(String termoPesquisar) {
+		this.termoPesquisar = termoPesquisar;
 	}
 }
