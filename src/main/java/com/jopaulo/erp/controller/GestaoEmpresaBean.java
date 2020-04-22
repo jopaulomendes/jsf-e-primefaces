@@ -3,13 +3,16 @@ package com.jopaulo.erp.controller;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.faces.convert.Converter;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.jopaulo.erp.model.Empresa;
+import com.jopaulo.erp.model.RamoAtividade;
 import com.jopaulo.erp.model.TipoEmpresa;
 import com.jopaulo.erp.repository.Empresas;
+import com.jopaulo.erp.repository.RamoAtividades;
 import com.jopaulo.erp.util.FacesMessages;
 
 @Named
@@ -24,9 +27,14 @@ public class GestaoEmpresaBean implements Serializable {
 	@Inject
 	private FacesMessages messages;
 	
+	@Inject
+	private RamoAtividades ramoAtividades;
+	
 	private List<Empresa> listaEmpresas;
 	
 	private String termoPesquisar;
+	
+	private Converter ramoAtividadeConverter;
 	
 	public void pesquisar() {
 		listaEmpresas = empresas.pesquisar(termoPesquisar);
@@ -38,6 +46,14 @@ public class GestaoEmpresaBean implements Serializable {
 	
 	public void todasEmpresas() {
 		listaEmpresas = empresas.todas();
+	}
+	
+	public List<RamoAtividade> completarRamoAtividade(String termo){
+		List<RamoAtividade> listaRamoAtividades = ramoAtividades.pesquisar(termo);
+		
+		ramoAtividadeConverter = new RamoAtividadeConverter(listaRamoAtividades);
+		
+		return listaRamoAtividades;
 	}
 
 	public List<Empresa> getListaEmpresas() {
@@ -53,6 +69,10 @@ public class GestaoEmpresaBean implements Serializable {
 	}
 	
 	public TipoEmpresa[] getTippEmpresa() {
-		return TipoEmpresa.values();
+		return TipoEmpresa.values();   
+	}
+	
+	public Converter getRamoAtividadeConverter() {
+		return ramoAtividadeConverter;
 	}
 }
