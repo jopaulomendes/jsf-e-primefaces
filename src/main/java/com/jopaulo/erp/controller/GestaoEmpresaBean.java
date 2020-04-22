@@ -13,6 +13,7 @@ import com.jopaulo.erp.model.RamoAtividade;
 import com.jopaulo.erp.model.TipoEmpresa;
 import com.jopaulo.erp.repository.Empresas;
 import com.jopaulo.erp.repository.RamoAtividades;
+import com.jopaulo.erp.service.CadastroEmpresaService;
 import com.jopaulo.erp.util.FacesMessages;
 
 @Named
@@ -30,11 +31,30 @@ public class GestaoEmpresaBean implements Serializable {
 	@Inject
 	private RamoAtividades ramoAtividades;
 	
+	@Inject
+	private CadastroEmpresaService cadastroEmpresaService;
+	
 	private List<Empresa> listaEmpresas;
 	
 	private String termoPesquisar;
 	
 	private Converter ramoAtividadeConverter;
+	
+	private Empresa empresa;
+	
+	public void prepararNovaEpresa() {
+		empresa = new Empresa();
+	}
+	
+	public void salvar() {
+		cadastroEmpresaService.salvar(empresa);
+		
+		if (jaHouvePesquisa()) {
+			pesquisar();
+		}
+		
+		messages.info("Empresa cadastrada com sucesso!");
+	}
 	
 	public void pesquisar() {
 		listaEmpresas = empresas.pesquisar(termoPesquisar);
@@ -55,6 +75,10 @@ public class GestaoEmpresaBean implements Serializable {
 		
 		return listaRamoAtividades;
 	}
+	
+	private boolean jaHouvePesquisa() {
+		return termoPesquisar != null && !"".equals(termoPesquisar);
+	}
 
 	public List<Empresa> getListaEmpresas() {
 		return listaEmpresas;
@@ -74,5 +98,9 @@ public class GestaoEmpresaBean implements Serializable {
 	
 	public Converter getRamoAtividadeConverter() {
 		return ramoAtividadeConverter;
+	}
+
+	public Empresa getEmpresa() {
+		return empresa;
 	}
 }
