@@ -1,6 +1,7 @@
 package com.jopaulo.erp.controller;
 
 import java.io.Serializable;
+import java.sql.Array;
 import java.util.Arrays;
 import java.util.List;
 
@@ -45,6 +46,10 @@ public class GestaoEmpresaBean implements Serializable {
 	
 	public void prepararNovaEpresa() {
 		empresa = new Empresa();
+	}
+	
+	public void prepararEdicao() {
+		ramoAtividadeConverter = new RamoAtividadeConverter(Arrays.asList(empresa.getRamoAtividade()));
 	}
 	
 	public void salvar() {

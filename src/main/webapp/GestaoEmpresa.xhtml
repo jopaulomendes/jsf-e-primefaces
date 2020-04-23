@@ -31,8 +31,10 @@
 						<span class="ui-icon ui-icon-grip-dotted-vertical" />
 					</span>
 
-					<p:commandButton value="Nova" icon="fa fa-plus" title="Nova empresa" actionListener="#{gestaoEmpresaBean.prepararNovaEpresa()}"
-						oncomplete="PF('empresaDialogWidgetVar').show()" update="empresaDialog" process="@this">
+					<p:commandButton value="Nova" icon="fa fa-plus" title="Nova empresa" 
+						actionListener="#{gestaoEmpresaBean.prepararNovaEpresa()}"
+						oncomplete="PF('empresaDialogWidgetVar').show()"
+						update="empresaDialog" process="@this">
 						<p:resetInput target="empresaDialog"/>	
 					</p:commandButton>
 
@@ -40,7 +42,13 @@
 						 <span class="ui-icon ui-icon-grip-dotted-vertical" />
 					</span>
 
-					<p:commandButton title="Editar" icon="fa fa-edit" disabled="#{not gestaoEmpresaBean.empresaSelecionado}"/>
+					<p:commandButton title="Editar" icon="fa fa-edit"
+						disabled="#{not gestaoEmpresaBean.empresaSelecionado}"
+						actionListener="#{gestaoEmpresaBean.prepararEdicao()}"
+						oncomplete="PF('empresaDialogWidgetVar').show()"
+						update="empresaDialog" process="@this">
+						<p:resetInput target="empresaDialog"/>
+					</p:commandButton>
 
 					<p:commandButton title="Excluir" icon="fa fa-trash" disabled="#{not gestaoEmpresaBean.empresaSelecionado}"/>
 
