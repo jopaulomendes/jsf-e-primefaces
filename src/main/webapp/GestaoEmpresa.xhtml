@@ -15,9 +15,9 @@
 			<f:viewAction action="#{gestaoEmpresaBean.todasEmpresas()}" />
 		</f:metadata>
 
-		<h:form>
+		<h:form id="frm">
 			<p:messages id="messages" showDetail="true" closable="true">
-				<p:autoUpdate />
+				<p:effect type="fade" event="load" delay="3000" />
 			</p:messages>
 
 			<p:toolbar>
@@ -25,7 +25,7 @@
 					<p:inputText id="termoPesquisa" placeholder="Pesquisar razao social..."	size="30" value="#{gestaoEmpresaBean.termoPesquisar}"/>
 
 					<p:commandButton value="Pesquisar" icon="fa fa-search" title="Pesquisar empresa"
-						actionListener="#{gestaoEmpresaBean.pesquisar}" update="empresaDataTable" process="@this termoPesquisa"/>
+						actionListener="#{gestaoEmpresaBean.pesquisar}" update="empresaDataTable messages" process="@this termoPesquisa"/>
 
 					<span class="ui-separator">
 						<span class="ui-icon ui-icon-grip-dotted-vertical" />
@@ -78,6 +78,8 @@
 			</p:dataTable>
 			
 			<p:dialog id="empresaDialog" header="Nova empresa" widgetVar="empresaDialogWidgetVar" modal="true" resizable="false" closeOnEscape="true" draggable="false">
+				<p:messages id="EmpresaMessages"/>
+				
 				<h:panelGrid id="empresaPanelGrid" rendered="#{gestaoEmpresaBean.empresa ne null}">
 					<p:outputLabel value="Razão social: " for="razaoSocial"/>
 					<p:inputText id="razaoSocial" size="80" maxlength="120" value="#{gestaoEmpresaBean.empresa.razaoSocial}"/>
@@ -105,8 +107,8 @@
 						value="#{gestaoEmpresaBean.empresa.ramoAtividade}"/>
 					
 					<h:outputLabel />
-					<p:commandButton value="Salvar" actionListener="#{gestaoEmpresaBean.salvar}" update="empresaDataTable empresaPanelGrid"
-						oncomplete="PF('empresaDialogWidgetVar').hide()" process="empresaDialog"/>
+					<p:commandButton value="Salvar" actionListener="#{gestaoEmpresaBean.salvar}" update="empresaPanelGrid EmpresaMessages"
+						oncomplete="if (!args.validationFailed) PF('empresaDialogWidgetVar').hide()" process="empresaDialog"/>
 				</h:panelGrid>
 			</p:dialog>
 		</h:form>

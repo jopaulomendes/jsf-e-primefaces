@@ -1,6 +1,7 @@
 package com.jopaulo.erp.controller;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.faces.convert.Converter;
@@ -51,9 +52,13 @@ public class GestaoEmpresaBean implements Serializable {
 		
 		if (jaHouvePesquisa()) {
 			pesquisar();
+		} else {
+			todasEmpresas();
 		}
 		
-		messages.info("Empresa cadastrada com sucesso!");
+		messages.info("Empresa salva com sucesso!");
+		
+		org.primefaces.context.RequestContext.getCurrentInstance().update(Arrays.asList("frm:empresaDataTable", "frm:messages"));
 	}
 	
 	public void pesquisar() {
