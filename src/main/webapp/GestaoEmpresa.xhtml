@@ -17,7 +17,7 @@
 
 		<h:form id="frm">
 			<p:messages id="messages" showDetail="true" closable="true">
-				<p:effect type="fade" event="load" delay="3000" />
+				<p:effect type="fade" event="load" delay="5000" />
 			</p:messages>
 
 			<p:toolbar id="toolbar">
@@ -50,7 +50,11 @@
 						<p:resetInput target="empresaDialog"/>
 					</p:commandButton>
 
-					<p:commandButton title="Excluir" icon="fa fa-trash" disabled="#{not gestaoEmpresaBean.empresaSelecionado}"/>
+					<p:commandButton title="Excluir" icon="fa fa-trash"
+						disabled="#{not gestaoEmpresaBean.empresaSelecionado}"
+						actionListener="#{gestaoEmpresaBean.excluir}"
+						update="messages empresaDataTable toolbar"
+						process="@this"/>
 
 					<span class="ui-separator"> 
 						<span class="ui-icon ui-icon-grip-dotted-vertical" />
