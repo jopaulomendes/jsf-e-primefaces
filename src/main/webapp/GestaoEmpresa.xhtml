@@ -16,6 +16,11 @@
 		</f:metadata>
 
 		<h:form id="frm">
+			<p:confirmDialog global="true">
+				<p:commandButton value="Sim" icon="fa fa-check" styleClass="ui-confirmdialog-yes"/>
+				<p:commandButton value="Não" icon="fa fa-remove" styleClass="ui-confirmdialog-no"/>
+			</p:confirmDialog>
+				
 			<p:messages id="messages" showDetail="true" closable="true">
 				<p:effect type="fade" event="load" delay="5000" />
 			</p:messages>
@@ -54,7 +59,10 @@
 						disabled="#{not gestaoEmpresaBean.empresaSelecionado}"
 						actionListener="#{gestaoEmpresaBean.excluir}"
 						update="messages empresaDataTable toolbar"
-						process="@this"/>
+						process="@this">
+						<p:confirm icon="ui-icon-alert" header="Confirmação de exclusão"
+							message="Deseja realmente excluir a empresa #{gestaoEmpresaBean.empresaSelecionado}?"/>	
+					</p:commandButton>
 
 					<span class="ui-separator"> 
 						<span class="ui-icon ui-icon-grip-dotted-vertical" />
